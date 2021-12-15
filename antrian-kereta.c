@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#define banyak_kursi 4
 #define MAX 5
 
 struct data{
@@ -12,11 +13,68 @@ struct data{
     int no;
 };
 
+struct tumpukan {
+    int top;
+    int data[MAX];
+};
+struct tumpukan stack;
+
+void create_stack(){
+    stack.top = -1;
+}
+
+void push(int data){
+    stack.top++;
+    stack.data[stack.top] = data;
+}
+void  pop(){
+    stack.top--;
+}
+
+void bayar(int harga){
+    create_stack();
+    int pecahan[7] = {1000, 2000, 5000, 10000, 20000, 50000, 100000};
+    int bayar, banyak[7];
+    int i = 6, count = 0, buff[MAX];
+    printf(" Harga : %d\n", harga);
+    printf(" Bayar : ");
+    scanf("%d", &bayar);
+    int sisa = bayar - harga;
+    if (sisa < 0){
+        printf(" Uang Anda tidak cukup\n");
+    }else if (sisa > 0){
+        for (i; i >= 0 && sisa != 0; i--){
+            if (pecahan[i] < sisa){
+                banyak[count] = sisa / pecahan[i];
+                sisa = sisa % pecahan[i];
+                push(pecahan[i]);
+                buff[count] = i;
+                count++;
+            }else if (pecahan[i] == sisa){
+                banyak[count] = sisa / pecahan[i];
+                sisa = 0;
+                push(pecahan[i]);
+                count++;
+            }
+        }
+        printf("\n Kembaliannya berupa: \n");
+        for (i = 0; i < count; i++){
+            printf(" %d sebanyak %d\n", stack.data[stack.top], banyak[i]);
+            pop();
+        }
+        printf("\n\n TERIMA KASIH\n");
+    }else {
+        printf("\n\n TERIMA KASIH\n\n");
+    }
+
+}
+
 int main(){
     int pil, i;
     int head = -1;
     int tail = -1;
     char ulang;
+    int ekonomi=35000, bisnis=40000, eksekutif=50000;
     char temp[10];
 
     struct data antri[MAX];
@@ -53,6 +111,7 @@ int main(){
                     printf("Masukkan tujuan\t\t: ");
                     fflush(stdin);
                     gets(antri[tail].tujuan);
+                    bayar(ekonomi);
                 }
                 else if(strcmp(temp, "bisnis") == 0){
                     printf("Masukkan no\t\t: ");
@@ -66,6 +125,7 @@ int main(){
                     printf("Masukkan tujuan\t\t: ");
                     fflush(stdin);
                     gets(antri[tail].tujuan);
+                    bayar(bisnis);
                 }
                 else if (strcmp(temp, "eksekutif") == 0){
                     printf("Masukkan no\t\t: ");
@@ -79,6 +139,7 @@ int main(){
                     printf("Masukkan tujuan\t\t: ");
                     fflush(stdin);
                     gets(antri[tail].tujuan);
+                    bayar(eksekutif);
                 }
                 else{
                     printf("Pilihan tidak ada!!!\n");
