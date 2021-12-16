@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <time.h>
 #define banyak_kursi 4
 #define MAX 5
 
@@ -36,7 +35,7 @@ void bayar(int harga){
     int pecahan[7] = {1000, 2000, 5000, 10000, 20000, 50000, 100000};
     int bayar, banyak[7];
     int i = 6, count = 0, buff[MAX];
-    printf(" Harga : %d\n", harga);
+    printf(" Harga\t: Rp%d\n", harga);
     printf(" Bayar : ");
     scanf("%d", &bayar);
     int sisa = bayar - harga;
@@ -57,7 +56,7 @@ void bayar(int harga){
                 count++;
             }
         }
-        printf("\n Kembaliannya berupa: \n");
+        printf("\n Kembalian\t: Rp%d\n", bayar-harga);
         for (i = 0; i < count; i++){
             printf(" %d sebanyak %d\n", stack.data[stack.top], banyak[i]);
             pop();
@@ -74,7 +73,7 @@ int main(){
     int head = -1;
     int tail = -1;
     char ulang;
-    int ekonomi=35000, bisnis=40000, eksekutif=50000;
+    int ekonomi=74000, bisnis=285000, eksekutif=500000;
     char temp[10];
 
     struct data antri[MAX];
