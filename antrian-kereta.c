@@ -10,7 +10,6 @@ struct data{
     char alamat[30];
     char tujuan[30];
     char kelas[30];
-    int no;
 };
 
 struct tumpukan {
@@ -36,8 +35,8 @@ void bayar(int harga){
     int pecahan[7] = {1000, 2000, 5000, 10000, 20000, 50000, 100000};
     int bayar, banyak[7];
     int i = 6, count = 0, buff[MAX];
-    printf(" Harga : %d\n", harga);
-    printf(" Bayar : ");
+    printf(" Harga\t: Rp%d\n", harga);
+    printf(" Bayar\t: Rp");
     scanf("%d", &bayar);
     int sisa = bayar - harga;
     if (sisa < 0){
@@ -57,7 +56,7 @@ void bayar(int harga){
                 count++;
             }
         }
-        printf("\n Kembaliannya berupa: \n");
+	printf("\n Kembalian\t: Rp%d\n", bayar-harga);
         for (i = 0; i < count; i++){
             printf(" %d sebanyak %d\n", stack.data[stack.top], banyak[i]);
             pop();
@@ -70,11 +69,9 @@ void bayar(int harga){
 }
 
 void masukdata(){
-	//Deklarasi Variabel Yang Digunakan
 	int A[50][50],B[200];
 	int a,b,c,d,tgl;
 	
-	//Mengambil data dari file Graf.txt dan disimpan pada Array 1 dimensi
 	FILE*Graf=fopen("Graf.txt","r");
 	a=0;
 	while(!feof(Graf)){
@@ -82,13 +79,11 @@ void masukdata(){
 		a++;
 	}
 	
-	//Mengakarkan a sehingga didapatkan index untuk membenruk Array 2 dimensi
 	b=1;
 	while(b!=a/b){
 		b++;
 	}
 	
-	//Memindahkan data dari Array 1 Dimensi ke Array 2 Dimensi
 	d=0;
 	for(a=0;a<b;a++){
 		A[b][a]=0;A[b+1][a]=a;
@@ -99,7 +94,6 @@ void masukdata(){
 		}
 	}
 	
-	//Mendapatkan bobot edge tiap vertex
 	d=b;
 	for(a=0;a<d;a++){
 		for(b=0;b<d;b++){
@@ -110,7 +104,6 @@ void masukdata(){
 		}
 	}
 	
-	//Memberi warna ke tiap vertex
 	for(a=0;a<d;a++){
 		for(b=0;b<d;b++){
 			if(A[a][d]==A[b][d]&&A[a][b]==1&&a>b&&a!=b){
@@ -154,7 +147,7 @@ void kursi(){
         }
         printf("\n");
     }
-    printf("Dihitung dari kiri ke kanan (0-35)");
+    printf("Dihitung dari kiri ke kanan (0-27)");
     printf("\nPilih kursi yang Anda inginkan: ");
     scanf("%d", &kursi_pilihan);
 
@@ -173,14 +166,15 @@ int main(){
     int tail = -1;
     char ulang;
     char temp[10];
-	int ekonomi=35000, bisnis=40000, eksekutif=50000;
+    int ekonomi=74000, bisnis=285000, eksekutif=500000;
     struct data antri[MAX];
 
     do{
         system("cls");
-        masukdata();
         printf("===========================================================Selamat Datang di Stasiun Kereta Api Sentana Bali============================================================\n");
-        printf("Silahkan pilih menu dibawah ini: \n");
+        printf("\n***Jadwal Keberangkatan***\n");
+        masukdata();
+	printf("Silahkan pilih menu dibawah ini: \n");
         printf("1. Pesan Tiket \n2. Ambil Tiket \n3. Kosongkan antrian\n4. Lihat data pemesan\n5. Keluar\n");
         printf("Pilihan: ");
         scanf("%d",&pil);
@@ -273,7 +267,7 @@ int main(){
             else{
                 printf("Data pemesan saat ini\n");
                 for(i=head+1; i<=tail; i++){
-                    printf("No\t: %d\n", antri[i].no);
+                    printf("No\t: %d\n", i+1);
                     printf("Nama\t: %s\n", antri[i].nama);
                     printf("Alamat\t: %s\n", antri[i].alamat);
                     printf("Tujuan\t: %s\n", antri[i].tujuan);
