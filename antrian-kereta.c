@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <time.h>
 #define banyak_kursi 4
 #define MAX 5
 
@@ -69,7 +68,7 @@ void bayar(int harga){
 
 }
 
-void masukdata(){
+void jadwal(){
 	int A[50][50],B[200];
 	int a,b,c,d,tgl;
 	
@@ -117,11 +116,11 @@ void masukdata(){
 	printf("Keberangkatan Pukul %i: \n",jam);
 	for(a=0;a<d;a++){
 		if(A[a][d]==0){
-			printf("\tKelas Ekonomi\t: %i\t| Jalur 1\n",jam);
+			printf("\tKelas Ekonomi\t| Jalur 1\n",jam);
 		}else if(A[a][d]==1){
-			printf("\tKelas Bisnis\t: %i\t| Jalur 2\n",jam);
+			printf("\tKelas Bisnis\t| Jalur 2\n",jam);
 		}else{
-			printf("\tKelas Eksekutif\t: %i\t| Jalur 3\n",jam);
+			printf("\tKelas Eksekutif\t| Jalur 3\n",jam);
 		}
 		kelas++;
 		if(kelas==3){
@@ -174,7 +173,7 @@ int main(){
         system("cls");
         printf("===========================================================Selamat Datang di Stasiun Kereta Api Sentana Bali============================================================\n");
         printf("\n***Jadwal Keberangkatan***\n");
-        masukdata();
+        jadwal();
 	printf("========================================================================================================================================================================\n");
 	printf("Silahkan pilih menu dibawah ini: \n");
         printf("1. Pesan Tiket \n2. Ambil Tiket \n3. Kosongkan antrian\n4. Lihat data pemesan\n5. Keluar\n");
