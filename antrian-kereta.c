@@ -10,6 +10,7 @@ struct data{
     char alamat[30];
     char tujuan[30];
     char kelas[30];
+    int no;
 };
 
 struct tumpukan {
@@ -116,11 +117,11 @@ void masukdata(){
 	printf("Keberangkatan Pukul %i: \n",jam);
 	for(a=0;a<d;a++){
 		if(A[a][d]==0){
-			printf("\tKelas Ekonomi: %i | Jalur 1\n",jam);
+			printf("\tKelas Ekonomi\t: %i\t| Jalur 1\n",jam);
 		}else if(A[a][d]==1){
-			printf("\tKelas Bisnis: %i | Jalur 2\n",jam);
+			printf("\tKelas Bisnis\t: %i\t| Jalur 2\n",jam);
 		}else{
-			printf("\tKelas Eksekutif: %i | Jalur 3\n",jam);
+			printf("\tKelas Eksekutif\t: %i\t| Jalur 3\n",jam);
 		}
 		kelas++;
 		if(kelas==3){
@@ -174,6 +175,7 @@ int main(){
         printf("===========================================================Selamat Datang di Stasiun Kereta Api Sentana Bali============================================================\n");
         printf("\n***Jadwal Keberangkatan***\n");
         masukdata();
+	printf("========================================================================================================================================================================\n");
 	printf("Silahkan pilih menu dibawah ini: \n");
         printf("1. Pesan Tiket \n2. Ambil Tiket \n3. Kosongkan antrian\n4. Lihat data pemesan\n5. Keluar\n");
         printf("Pilihan: ");
@@ -187,50 +189,50 @@ int main(){
                 tail ++;
                 printf("Pilih kelas yang tersedia: \n");
                 printf("Kelas Ekonomi\nKelas Bisnis\nKelas Eksekutif\n");
-                printf("Ketikkan Kelas: ");
+                printf("Ketikkan Kelas\t: ");
                 fflush(stdin);
                 gets(temp);
                 strcpy(antri[tail].kelas, temp);
                 if (strcmp(temp, "ekonomi") == 0){
-                    printf("Masukkan no\t\t: ");
+		printf("Masukkan No\t\t: ");
                     scanf("%d", &antri[tail].no);
-                    printf("Masukkan nama\t\t: ");
+                    printf("Masukkan Nama\t\t: ");
                     fflush(stdin);
                     gets(antri[tail].nama);
-                    printf("Masukkan alamat\t\t: ");
+                    printf("Masukkan Alamat\t\t: ");
                     fflush(stdin);
                     gets(antri[tail].alamat);
-                    printf("Masukkan tujuan\t\t: ");
+                    printf("Masukkan Tujuan\t\t: ");
                     fflush(stdin);
                     gets(antri[tail].tujuan);
                     kursi();
                     bayar(ekonomi);
                 }
                 else if(strcmp(temp, "bisnis") == 0){
-                    printf("Masukkan no\t\t: ");
+		    printf("Masukkan No\t\t: ");
                     scanf("%d", &antri[tail].no);
-                    printf("Masukkan nama\t\t: ");
+                    printf("Masukkan Nama\t\t: ");
                     fflush(stdin);
                     gets(antri[tail].nama);
-                    printf("Masukkan alamat\t\t: ");
+                    printf("Masukkan Alamat\t\t: ");
                     fflush(stdin);
                     gets(antri[tail].alamat);
-                    printf("Masukkan tujuan\t\t: ");
+                    printf("Masukkan Tujuan\t\t: ");
                     fflush(stdin);
                     gets(antri[tail].tujuan);
                     kursi();
                     bayar(bisnis);
                 }
                 else if (strcmp(temp, "eksekutif") == 0){
-                    printf("Masukkan no\t\t: ");
+		    printf("Masukkan No\t\t: ");
                     scanf("%d", &antri[tail].no);
-                    printf("Masukkan nama\t\t: ");
+                    printf("Masukkan Nama\t\t: ");
                     fflush(stdin);
                     gets(antri[tail].nama);
-                    printf("Masukkan alamat\t\t: ");
+                    printf("Masukkan Alamat\t\t: ");
                     fflush(stdin);
                     gets(antri[tail].alamat);
-                    printf("Masukkan tujuan\t\t: ");
+                    printf("Masukkan Tujuan\t\t: ");
                     fflush(stdin);
                     gets(antri[tail].tujuan);
                     kursi();
@@ -267,7 +269,7 @@ int main(){
             else{
                 printf("Data pemesan saat ini\n");
                 for(i=head+1; i<=tail; i++){
-                    printf("No\t: %d\n", i+1);
+                    printf("No\t: %d\n", antri[i].no);
                     printf("Nama\t: %s\n", antri[i].nama);
                     printf("Alamat\t: %s\n", antri[i].alamat);
                     printf("Tujuan\t: %s\n", antri[i].tujuan);
